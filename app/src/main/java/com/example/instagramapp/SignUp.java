@@ -27,6 +27,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private TextView txtGetDataFromServer;
     private Button getAllData;
     private String allKickBoxers;
+    private Button btnTransition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         edtKickPower = findViewById(R.id.edtKickPower);
         txtGetDataFromServer = findViewById(R.id.txtGetDataFromServer);
         getAllData = findViewById(R.id.btnGetAllData);
+        btnTransition = findViewById(R.id.btnNextActivity);
 
         btnSave.setOnClickListener(SignUp.this);// implementing the interface.
         txtGetDataFromServer.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +55,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             // adn there is no errors.if you want get one object use the get In background. Otherwise, use the
                             // findIn Background call back method.
 
-                            txtGetDataFromServer.setText(object.get("name")+ " - " +
-                                    "Punch Power: " + object.get("punchPower") + "" );
+                            txtGetDataFromServer.setText(object.get("name")+ " - " + "Punch Power: " + object.get("punchPower") + "" );
 
 
                         }
@@ -71,6 +72,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 allKickBoxers = ""; // this is just an initial value.when the button is tapped,you are going to assign this empty value to this variable.
 
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("kickBoxer");
+                //queryAll.whereGreaterThan("punchPower",100); // it gets the all the objects with the punch power that is greater than 100
+                queryAll.whereGreaterThanOrEqualTo("punchPower",4000);
+                queryAll.setLimit(1);
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {// we are going to take a list of objects.
@@ -96,6 +100,15 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
                     }
                 });
+
+            }
+        });
+
+        btnTransition.setOnClickListener(new View.OnClickListener() {// first of all, we need to have a activity to transit.creating a new java class.
+            @Override
+            public void onClick(View v) {
+
+
 
             }
         });
