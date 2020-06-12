@@ -1,7 +1,9 @@
 package com.example.instagramapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+// This is the Initial Activity.
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -108,6 +110,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(SignUp.this,
+                        SignUpLoginActivity.class);// the activity that we need to transit.
+                // you have to mention the activity in the Manifest file. otherwise,app will crash.
+                startActivity(intent);
 
 
             }
@@ -146,7 +152,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             final ParseObject kickBoxer = new ParseObject("kickBoxer");
             kickBoxer.put("name", edtName.getText().toString());
             kickBoxer.put("punchSpeed", Integer.parseInt(edtPunchSpeed.getText().toString())); // IN THE SERVER THERE IS A integer value,
-            // so we have to pass the int as well.Always check the Server..!!!
+            // so we have to pass the int as well.Always check the Server..!!! BACK4APP.
             kickBoxer.put("punchPower", Integer.parseInt(edtPunchPower.getText().toString()));
             kickBoxer.put("kickSpeed", Integer.parseInt(edtKickSpeed.getText().toString()));
             kickBoxer.put("kickPower", Integer.parseInt(edtKickPower.getText().toString()));
