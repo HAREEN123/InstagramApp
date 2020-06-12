@@ -2,6 +2,7 @@ package com.example.instagramapp;
 
 // This is the Second activity, that happens when tapping the switch to the another activity button in the Initial activity..
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class SignUpLoginActivity extends AppCompatActivity {// connect the sign 
                         if(e==null){
 
                             FancyToast.makeText(SignUpLoginActivity.this, appUser.get("username") + " is signed up successfully.", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
+                            Intent intent = new Intent(SignUpLoginActivity.this,WelcomeActivity.class); // this must be put in oder to move in to the next activity window...
+                            startActivity(intent);
 
                         } else {
                             FancyToast.makeText(SignUpLoginActivity.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, true).show();
@@ -70,6 +73,9 @@ public class SignUpLoginActivity extends AppCompatActivity {// connect the sign 
                         if(user != null && e == null){
 
                             FancyToast.makeText(SignUpLoginActivity.this, user.get("username") + " is logged in successfully.", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
+                            Intent intent = new Intent(SignUpLoginActivity.this,WelcomeActivity.class);
+                            startActivity(intent); // Intent object is more important when creating activities...
+
 
                         }else{
 
